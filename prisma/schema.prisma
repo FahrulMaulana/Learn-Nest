@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id      Int      @id @default(autoincrement())
+  email   String   @unique
+  name    String?
+  role    String
+}
+
+model calon_siswa {
+  id      Int      @id @default(autoincrement())
+  name    String
+  nisn    Int
+  jenis_kelamin jenis_kelamin?
+
+  pendaftaranId Int   @unique
+  pendaftaran  pendaftaran  @relation(fields: pendaftaranId, references: [id])
+}
+
+model jenis_kelamin {
+  id       Int      @id @default(autoincrement())
+  kelamin  String    
+
+  calon_siswaId Int          @unique
+  calon_siswa   calon_siswa  @relation(fields: calon_siswaId, references: [id])
+
+  }
+
+  model pendaftaran {
+    id     Int      @id @default(autoincrement())
+    calon_siswa calon_siswa?
+  }
+
+
+
