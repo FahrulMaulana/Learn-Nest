@@ -22,24 +22,20 @@ model calon_siswa {
   id      Int      @id @default(autoincrement())
   name    String
   nisn    Int
-  jenis_kelamin jenis_kelamin?
+  jenis_kelaminId Int
 
-  pendaftaranId Int   @unique
-  pendaftaran  pendaftaran  @relation(fields: pendaftaranId, references: [id])
+
 }
 
 model jenis_kelamin {
   id       Int      @id @default(autoincrement())
   kelamin  String    
 
-  calon_siswaId Int          @unique
-  calon_siswa   calon_siswa  @relation(fields: calon_siswaId, references: [id])
-
   }
 
   model pendaftaran {
     id     Int      @id @default(autoincrement())
-    calon_siswa calon_siswa?
+    calon_siswaId  Int
   }
 
 
