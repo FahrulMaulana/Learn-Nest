@@ -22,21 +22,63 @@ model calon_siswa {
   id      Int      @id @default(autoincrement())
   name    String
   nisn    Int
-  jenis_kelaminId Int
-
-
+  jenis_kelaminId Int 
+  jenis_kelamin jenis_kelamin @relation(fields: [jenis_kelaminId], references: [id])
+  pendaftaran pendaftaran?
 }
 
 model jenis_kelamin {
   id       Int      @id @default(autoincrement())
   kelamin  String    
-
+  calon_siswa calon_siswa[]
   }
 
   model pendaftaran {
     id     Int      @id @default(autoincrement())
-    calon_siswaId  Int
+    calon_siswaId  Int @unique
+    data_ortuId Int @unique
+    calon_siswa calon_siswa @relation(fields: [calon_siswaId], references: [id])
+    data_ortu data_ortu @relation(fields: [data_ortuId], references: [id])
   }
 
+model data_ortu{
+  id       Int      @id @default(autoincrement())
+  nama_ayah String
+  pekerjaan_ayahId Int
+  pendidikan_ayahId Int
+  nama_ibu String
+  pekerjaan_ibuId Int
+  pendidikan_ibuId Int
+  pendaftaran pendaftaran?
+
+  pekerjaan_ayah pekerjaan_ayah @relation(fields: [pekerjaan_ayahId], references: [id])
+  pendidikan_ayah pendidikan_ayah @relation(fields: [pendidikan_ayahId], references: [id])
+  pekerjaan_ibu pekerjaan_ibu @relation(fields: [pekerjaan_ibuId], references: [id])
+  pendidikan_ibu pendidikan_ibu @relation(fields: [pendidikan_ibuId], references: [id])
+  }
+
+model pekerjaan_ayah{
+  id       Int      @id @default(autoincrement())
+  pekerjaan_ayah String
+  data_ortu data_ortu[]
+}
+
+model pendidikan_ayah{
+  id       Int      @id @default(autoincrement())
+  pendidikan_ayah String
+  data_ortu data_ortu[]
+}
+
+model pekerjaan_ibu{
+  id       Int      @id @default(autoincrement())
+  pekerjaan_ibu String
+  data_ortu data_ortu[]
+}
+
+model pendidikan_ibu{
+  id       Int      @id @default(autoincrement())
+  pekerjaan_ibu String
+  data_ortu data_ortu[]
+}
 
 
