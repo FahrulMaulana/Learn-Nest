@@ -12,9 +12,10 @@ import { PekerjaanAyahModule } from './pekerjaan_ayah/pekerjaan_ayah.module';
 import { PendidikanAyahModule } from './pendidikan_ayah/pendidikan_ayah.module';
 import { PekerjaanIbuModule } from './pekerjaan_ibu/pekerjaan_ibu.module';
 import { PendidikanIbuModule } from './pendidikan_ibu/pendidikan_ibu.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [BooksModule, PrismaModule, UserModule, CalonSiswaModule, JenisKelaminModule, PendaftaranModule, DataOrtuModule, PekerjaanAyahModule, PendidikanAyahModule, PekerjaanIbuModule, PendidikanIbuModule],
+  imports: [BooksModule, PrismaModule, UserModule, CalonSiswaModule, JenisKelaminModule, PendaftaranModule, DataOrtuModule, PekerjaanAyahModule, PendidikanAyahModule, PekerjaanIbuModule, PendidikanIbuModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
