@@ -12,10 +12,12 @@ datasource db {
 
 
 model User {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  name    String?
-  role    String
+  id         Int      @id @default(autoincrement())
+  email      String?  @unique
+  name       String?
+  username   String?
+  id_role    String?
+  password   String?       
 }
 
 model calon_siswa {
@@ -36,24 +38,24 @@ model jenis_kelamin {
   model pendaftaran {
     id     Int      @id @default(autoincrement())
     calon_siswaId  Int @unique
-    data_ortuId Int @unique
     calon_siswa calon_siswa @relation(fields: [calon_siswaId], references: [id])
+    data_ortuId Int @unique
     data_ortu data_ortu @relation(fields: [data_ortuId], references: [id])
+   
   }
 
 model data_ortu{
   id       Int      @id @default(autoincrement())
   nama_ayah String
   pekerjaan_ayahId Int
+  pekerjaan_ayah pekerjaan_ayah @relation(fields: [pekerjaan_ayahId], references: [id])
   pendidikan_ayahId Int
+  pendidikan_ayah pendidikan_ayah @relation(fields: [pendidikan_ayahId], references: [id])
   nama_ibu String
   pekerjaan_ibuId Int
+  pekerjaan_ibu pekerjaan_ibu @relation(fields: [pekerjaan_ibuId], references: [id])
   pendidikan_ibuId Int
   pendaftaran pendaftaran?
-
-  pekerjaan_ayah pekerjaan_ayah @relation(fields: [pekerjaan_ayahId], references: [id])
-  pendidikan_ayah pendidikan_ayah @relation(fields: [pendidikan_ayahId], references: [id])
-  pekerjaan_ibu pekerjaan_ibu @relation(fields: [pekerjaan_ibuId], references: [id])
   pendidikan_ibu pendidikan_ibu @relation(fields: [pendidikan_ibuId], references: [id])
   }
 
@@ -77,7 +79,7 @@ model pekerjaan_ibu{
 
 model pendidikan_ibu{
   id       Int      @id @default(autoincrement())
-  pekerjaan_ibu String
+  pendidikan_ibu String
   data_ortu data_ortu[]
 }
 
