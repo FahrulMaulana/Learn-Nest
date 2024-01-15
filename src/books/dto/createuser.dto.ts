@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { Type } from "class-transformer";
-import { IsNotEmpty } from "class-validator";
+import { IsEmail, IsNotEmpty } from "class-validator";
 
 
 export class createUsersDTO{
     @IsNotEmpty()
+    @IsEmail()
     @Type(()=> String)
     email: string;
 
@@ -12,5 +13,8 @@ export class createUsersDTO{
     name: string;
 
     @IsNotEmpty()
-    role: string;
+    username: string
+
+    @IsNotEmpty()
+    password: string
 }
